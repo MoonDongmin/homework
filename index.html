@@ -1,13 +1,35 @@
-!<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 크기에 따라 색상 변경</title>
+    <style>
+        @media screen and (max-width: 767px) {
+            body {
+                background-color: #78E6E6;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 959px) {
+            body {
+                background-color: #FF848F;
+            }
+        }
+
+        @media screen and (min-width: 960px) {
+            body {
+                background-color: #646464;
+            }
+        }
+    </style>
 </head>
 <body>
-hi
+<header>
+    <h1>웹 프로그래밍</h1>
+    <h2>반응형 웹사이트 만들기</h2>
+    <p>meta 태그를 활용하여 노트북, 테블릿, 스마트폰에서 각각 화면의 색깔을 다르게 표시하여 반응형 웹인지를 확인함.</p>
+
+</header>
 </body>
 </html>
