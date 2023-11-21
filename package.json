@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "homepage" : "https://(GitHub ID).github.io/(Repository name)/",
+  "homepage" : "https://moondongmin.github.io/homework/",
 
   "scripts": {
     "start": "node ../homework/app.js",
