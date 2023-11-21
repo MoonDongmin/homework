@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+
+
+.init-image{
+    background-image: url("https://cdn.pixabay.com/photo/2016/04/27/20/38/girl-1357485_1280.jpg");
+    background-size: cover;
+}
+
+.moirai-one{
+    font-family: "Moirai One", cursive;
+}
+
+.section-image-01{
+    background-image: url("../image/section-01.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.section-diagonal{
+    border-style: solid;
+    border-width: 0 100vw 200px 0;
+    border-color: transparent #f3f4f6 transparent transparent;
+}

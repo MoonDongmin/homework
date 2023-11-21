@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Programming</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/style.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.5/dist/htmx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.5/dist/ext/client-side-templates.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mustache@latest/mustache.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
+    <script src="./js/chart.js"></script>
+    <title>Web Programming</title>
+</head>
+
+<body>
+<main>
+    <section class="w-full h-screen init-image flex flex-col justify-center">
+        <div class="ml-40 text-6xl text-white font-bold moirai-one">
+            Welcome My Page!
+        </div>
+
+        <div hx-ext="client-side-templates">
+            <div hx-get="http://localhost:13000/users/1" hx-trigger="load" hx-target="#username"
+                 mustache-template="username-template">
+
+            </div>
+
+            <template id="username-template">
+                <span>{{name}}</span>
+            </template>
+
+        </div>
+
+        <div class="mt-4 ml-40 text-2xl text-white">
+            환영합니다 <span id="username"></span>!
+        </div>
+    </section>
+
+    <section class="py-40 bg-gray-100 flex flex-row justify-center items-center">
+        <!--정보 -->
+        <div class="ml-10 mr-48 w-5/12">
+            <!--이름-->
+            <div class="text-4xl font-bold">
+                Web Programming 과제: 사이트 만들기
+            </div>
+            <!--소개-->
+            <div class="mt-4 text-lg text-justify">
+                웹 프로그래밍 수업을 통해서 웹 사이트를 만들어 배포하는 작업을 한다. 이 웹사이트는 과거부터 현재까지의 대전 날씨정보를 받아와서 화면에 그래프로 보여주며
+                확인할 수 있는 사이트를 만들었다.
+            </div>
+
+            <!--연구분야 : 제목-->
+            <div class="mt-10 text-2xl font-bold">
+                사용한 것
+            </div>
+            <!--연구분야: 내용 -->
+            <div>
+                <ul class="mt-4 list-disc">
+                    <li class="mt-2 ml-5">HTML</li>
+                    <li class="mt-2 ml-5">CSS</li>
+                    <li class="mt-2 ml-5">JavaScript</li>
+                    <li class="mt-2 ml-5">GitHub Page 배포</li>
+                </ul>
+            </div>
+            <div class="mt-5">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                문동민
+            </div>
+        </div>
+
+        <div class="w-4/12">
+            <div class="h-96 section-image-01"></div>
+        </div>
+
+    </section>
+    <div class="relative section-diagonal"></div>
+
+    <!-- 대시보드 -->
+    <!--IAQ 대시보드-->
+    <section class="w-full h-[1100px]">
+        <!--IAQ 제목-->
+        <div class="mx-40 -mt-24 text-5xl font-bold">
+            대전의 날씨 정보
+        </div>
+
+        <!--현재 데이터 요약-->
+        <div hx-ext="client-side-templates">
+            <div hx-get="http://localhost:13000/iaqData?_sort=id&_order=desc&_limit=1" hx-trigger="load"
+                 hx-target="#dashboard" mustache-template="dashboard-template" hx-swap="innerHTML">
+            </div>
+
+            <template id="dashboard-template">
+                {{#.}}
+                <div class="my-20 flex justify-between items-center">
+                    <div class="w-7/12 ml-40
+           flex flex-row justify-between items-center
+           text-2xl font-bold">
+                        <div class="w-60 h-20 pt-5
+             border-2 border-gray-200 rounded-lg
+             text-center shadow-2xl shadow-blue-500/20">
+                            <i class="text-4xl mr-4 fa-solid fa-temperature-three-quarters"></i>
+                            <span class="text-4xl">{{temp}}&#8451;</span> <!--UTF-8 Dingbats 33d9-->
+                        </div>
+                        <div class="w-60 h-20 pt-5
+             border-2 border-gray-200 rounded-lg
+             text-center shadow-2xl shadow-blue-500/20">
+                            <i class="text-4xl mr-4 fa-solid fa-droplet"></i>
+                            <span class="text-4xl">{{humid}}%</span>
+                        </div>
+                        <div class="w-60 h-20 pt-5
+             border-2 border-gray-200 rounded-lg
+             text-center shadow-2xl shadow-blue-500/20">
+                            <i class="text-4xl mr-4 fa-solid fa-wind"></i>
+                            <span class="text-3xl">{{dust}}&#13273;</span> <!--UTF-8 Dingbats 33d9-->
+                        </div>
+                        <div class="w-60 h-20 pt-5
+             flex flex-row
+             border-2 border-gray-200 rounded-lg
+             text-center shadow-2xl shadow-blue-500/20">
+                            <img class="mx-4 mb-4" src="./image/co2-cloud.png" alt="">
+                            <span class="text-2xl">{{co2}}&#13273;</span>
+                        </div>
+                    </div>
+                </div>
+                {{/.}}
+            </template>
+
+            <ul id="dashboard"></ul>
+        </div>
+
+        <!--Chart-->
+        <div hx-ext="client-side-templates">
+            <div type="button" hx-get="http://localhost:13000/iaqData?_sort=id&_order=desc&_limit=15"
+                 hx-trigger="load" mustache-template="chart-template" hx-target="#chart"
+                 hx-swap="innerHTML"></div>
+        </div>
+
+        <ul id="chart"></ul>
+
+        <div>
+            <div class="mx-40 text-4xl font-bold">
+                History
+                <div class="w-full h-[700px] my-4 border-2">
+                    <canvas id="canvas" class="m-8" width="500" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- 푸터 -->
+<footer class="w-full h-64 bg-gray-800
+     grid grid-cols-2 gap-4">
+    <div class="grid grid-row-2">
+        <div class="grid items-end ml-20 text-2xl text-white font-bold">
+            한밭대학교
+        </div>
+        <div class="grid ml-20 mt-2 text-4xl text-white font-bold">
+            Web Programming
+        </div>
+    </div>
+    <div class="mr-20 grid justify-end items-center">
+        <div>
+            <i class="mr-2 fa-solid fa-house-chimney-window
+           text-2xl text-white"></i>
+            <i class="mx-2 fa-brands fa-square-instagram
+           text-2xl text-white"></i>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let time;
+    const chartData = [];
+    const myChart = new Chart(
+        document.getElementById("canvas"),
+        config,
+    );
+</script>
+<template id="chart-template">
+    {{#.}}
+    <script>
+       //time = moment("{{time}}").format("HH.mm.ss");
+       time = moment("{{time}}").format("YYYY-MM-DD");
+        chartData.push({
+            time,
+            temp: "{{temp}}",
+            humid: "{{humid}}",
+            dust: "{{dust}}",
+            co2: "{{co2}}",
+        });
+
+        addData(myChart, time, [
+            "{{temp}}",
+            "{{humid}}",
+            "{{dust}}",
+            "{{co2}}",
+        ]);
+    </script>
+    {{/.}}
+</template>
+</script>
+</body>
+</html>
