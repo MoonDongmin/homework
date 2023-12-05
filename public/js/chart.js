@@ -77,7 +77,7 @@ const addData = (chart, label, data) => {
         y2: {
           position: "right",
           suggestedMin: 0,
-          suggestedMax: 1000,
+          suggestedMax: 100,
         },
       },
     },

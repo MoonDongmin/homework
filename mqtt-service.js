@@ -6,7 +6,6 @@ const options = {
     clean: true,
     connectTimeout: 4000,
     clientId: "hbnu_smart_human_life_dongmin",
-    //clientId: "dongmin",
 };
 
 function run() {

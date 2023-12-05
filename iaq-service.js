@@ -1,5 +1,4 @@
 const fetchUri = "http://localhost:13000/iaqData";
-//const fetchUri = "http://192.168.100.27:13000/iaqData";
 
 function post(message) {
     const fetchOptions = {
