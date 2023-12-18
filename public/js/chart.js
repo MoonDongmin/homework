@@ -71,12 +71,12 @@ const addData = (chart, label, data) => {
         },
         y1: {
           position: "left",
-          suggestedMin: 0,
+          suggestedMin: -15,
           suggestedMax: 100,
         },
         y2: {
           position: "right",
-          suggestedMin: 0,
+          suggestedMin: -15,
           suggestedMax: 100,
         },
       },

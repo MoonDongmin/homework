@@ -14,7 +14,7 @@ server.use("/",express.static(join(process.cwd(),
 server.use(router);
 server.use(middlewares);
 
-const DEVELOPER = "";
+const DEVELOPER = "DEVELOPER";
 const PORT = 13000;
 
 server.listen(PORT, () => {
