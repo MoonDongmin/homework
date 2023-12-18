@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 
-    <script src="js/chart.js"></script>
+    <script src="./js/chart.js"></script>
     <title>Web Programming</title>
 </head>
 
@@ -28,7 +28,8 @@
         </div>
 
         <div hx-ext="client-side-templates">
-            <div hx-get="http://localhost:13000/users/1" hx-trigger="load" hx-target="#username"
+<!--            <div hx-get="http://localhost:13000/users/1" hx-trigger="load" hx-target="#username"-->
+            <div hx-get="http://15.164.94.138:13000/users/1" hx-trigger="load" hx-target="#username"
                  mustache-template="username-template">
 
             </div>
@@ -93,7 +94,7 @@
 
         <!--현재 데이터 요약-->
         <div hx-ext="client-side-templates">
-            <div hx-get="http://localhost:13000/iaqData?_sort=id&_order=desc&_limit=1" hx-trigger="load"
+            <div hx-get="http://15.164.94.138:13000/iaqData?_sort=id&_order=desc&_limit=1" hx-trigger="load"
                  hx-target="#dashboard" mustache-template="dashboard-template" hx-swap="innerHTML">
             </div>
 
@@ -138,7 +139,7 @@
 
         <!--Chart-->
         <div hx-ext="client-side-templates">
-            <div type="button" hx-get="http://localhost:13000/iaqData?_sort=id&_order=desc&_limit=15"
+            <div type="button" hx-get="http://15.164.94.138:13000/iaqData?_sort=id&_order=desc&_limit=15"
                  hx-trigger="load" mustache-template="chart-template" hx-target="#chart"
                  hx-swap="innerHTML"></div>
         </div>
